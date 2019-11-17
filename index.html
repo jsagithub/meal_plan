@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="frameworks/bootstrap.min.css" >
+
+    <title>Meal Plan!</title>
+    <style>
+        .border_day{
+            border: 1px solid #827e7e;
+        }
+    </style>
+  </head>
+  <body>
+        <div class="container">
+            <h1>Week Plan</h1>
+            <div class="row">
+                <div class="col-sm border_day" id="day_1">
+                    <h2>Day 1</h2>
+                </div>
+                <div class="col-sm border_day" id="day_2">
+                    <h2>Day 2</h2>
+                </div>
+                <div class="col-sm border_day" id="day_3">
+                    <h2>Day 3</h2>
+                </div>
+                <div class="col-sm border_day" id="day_4">
+                    <h2>Day 4</h2>
+                </div>
+                <div class="col-sm border_day" id="day_5">
+                    <h2>Day 5</h2>
+                </div>
+                <div class="col-sm border_day" id="day_6">
+                    <h2>Day 6</h2>
+                </div>
+                <div class="col-sm border_day" id="day_7">
+                    <h2>Day 7</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1>Shop List</h1>
+            <div class="row">
+                <div class="col-sm">
+                    <ul class="list-group" id="shop_list"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <h1>Vegetables</h1>
+                    <ul class="list-group" id="list_vegetables"></ul>
+                  </div>
+                  <div class="col-sm">                    
+                    <h1>Protein</h1>
+                    <ul class="list-group" id="list_protein"></ul>
+                  </div>
+                  <div class="col-sm">                    
+                    <h1>Free Pass Meals</h1>
+                    <ul class="list-group" id="list_free_meal"></ul>
+                  </div>
+                </div>
+              </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="frameworks/jquery-3.3.1.slim.min.js"></script>
+    <script src="frameworks/popper.min.js"></script>
+    <script src="frameworks/bootstrap.min.js"></script>
+  </body>
+</html>
+<script>
+    var vegetables = ['kale','lettuce','cucumbers','tomatoes','peppers','broccoli','brussel sprouts','cabbage','cauliflower','celery','zucchini','eggplant','beetroot','pumpkin','green beans','spinach'];
+    var proteins = ['100g chicken','100g pork','100g salmon','100g sardines','100g tuna','100g tofu','100g tempeh','1 cup cooked peas','1 cup cooked chickpeas','1 cup cooked beans','1 cup cooked lentils','1 cup cooked quinoa','2x medium eggs','200g plain yogurt','200g cottage cheese','240ml milk'];
+    var freemeals = ['MC', 'BQ', 'steak with french fries','lasagna', 'pasta a la bolognesa'];
+    var control_days = [1,3,5,7];
+    var free_days = [2,4,6];
+    
+    //Show vegetables List
+    jQuery.each(vegetables, function(i,val){
+        $("#list_vegetables").append('<li class="list-group-item">'+val+'</li>');
+    });
+    //Show protein List
+    jQuery.each(proteins, function(i,val){
+        $("#list_protein").append('<li class="list-group-item">'+val+'</li>');
+    });
+     //Show free meal List
+     jQuery.each(freemeals, function(i,val){
+        $("#list_free_meal").append('<li class="list-group-item">'+val+'</li>');
+    });
+    //Random control meals
+    for (i = 0; i < control_days.length; i++) {
+        meal = "";
+        meal += "- "+proteins[Math.floor(Math.random() * proteins.length)];
+        meal += "<br>- "+vegetables[Math.floor(Math.random() * vegetables.length)];
+        meal += "<br>- "+vegetables[Math.floor(Math.random() * vegetables.length)];
+        $("#shop_list").append('<li class="list-group-item">'+meal+'</li>');
+        $("#day_"+control_days[i]).append(meal);
+        
+    }
+    //Free Meals
+    for (i = 0; i < free_days.length; i++) {
+        meal = "";
+        meal += "- "+freemeals[Math.floor(Math.random() * freemeals.length)];        
+        $("#shop_list").append('<li class="list-group-item">'+meal+'</li>');
+        $("#day_"+free_days[i]).append(meal);
+        
+    }
+</script>
